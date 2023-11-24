@@ -13,10 +13,10 @@ def main(clip_model_type: str):
     device = torch.device('cuda:0')
     clip_model_name = clip_model_type.replace('/', '_')
     ## edit
-    out_path = f"./data/pbl_mix/oscar_split_{clip_model_name}_pbl_train_mix_2_8_20000_100051.pkl"
+    out_path = f"./data/pbl_mix/oscar_split_{clip_model_name}_pbl_train_mix_4_6_20000_100051.pkl"
     clip_model, preprocess = clip.load(clip_model_type, device=device, jit=False)
     ## edit
-    with open('./data/pbl_mix/annotations/pbl_train_mix_caption_2_8_20000_100051.json', 'r') as f:
+    with open('./data/pbl_mix/annotations/pbl_train_mix_caption_4_6_20000_100051.json', 'r') as f:
         data = json.load(f)
     print("%0d captions loaded from json " % len(data))
     all_embeddings = []
