@@ -12,6 +12,18 @@ import argparse
 import json
 from typing import Tuple, Optional, Union
 
+# add pretrained weight to use our PBL project
+def load_pretrained_weights(model, weight_path):
+    """
+    Load pretrained weights into the model.
+    :param model: The model to which the weights will be loaded.
+    :param weight_path: The path to the pretrained weight file.
+    """
+    if os.path.exists(weight_path):
+        model.load_state_dict(torch.load(weight_path, map_location=torch.device('cpu')))
+        print(f"Loaded pretrained weights from {weight_path}")
+    else:
+        print(f"No pretrained weights found at {weight_path}")
 
 class MappingType(Enum):
     MLP = 'mlp'
@@ -336,6 +348,9 @@ def train(dataset: ClipCocoDataset, model: ClipCaptionModel, args,
 
 def main():
     parser = argparse.ArgumentParser()
+    # load weights
+    parser.add_argument('--weights', type=str, help='Path to the pretrained weights file')
+
     parser.add_argument('--data', default='./data/coco/oscar_split_train.pkl')
     parser.add_argument('--out_dir', default='./checkpoints')
     parser.add_argument('--prefix', default='coco_prefix', help='prefix for saved filenames')
@@ -363,6 +378,11 @@ def main():
                                   num_layers=args.num_layers, mapping_type=args.mapping_type)
         print("Train both prefix and GPT")
         sys.stdout.flush()
+
+    # load weights
+    if args.weights:
+        load_pretrained_weights(model, args.weights)
+
     train(dataset, model, args, output_dir=args.out_dir, output_prefix=args.prefix)
 
 

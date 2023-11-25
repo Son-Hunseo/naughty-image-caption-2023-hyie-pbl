@@ -16,6 +16,8 @@ pbl_train_raw/*
 !pbl_train_raw/.gitkeep
 pbl_train_mix/*
 !pbl_train_mix/.gitkeep
+pbl_train_sequential/*
+!pbl_train_sequential/.gitkeep
 pretrained_models/*
 !pretrained_models/.gitkeep
 
