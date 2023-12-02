@@ -20,6 +20,8 @@ pbl_train_sequential/*
 !pbl_train_sequential/.gitkeep
 pretrained_models/*
 !pretrained_models/.gitkeep
+test_image/*
+!test_image/.gitkeep
 
 
 .ipynb_checkpoints
