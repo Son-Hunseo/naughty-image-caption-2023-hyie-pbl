@@ -5,6 +5,10 @@
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
+# private
+.idea/
+__pycache__/
+
 # pbl
 coco_train/*
 !coco_train/.gitkeep
